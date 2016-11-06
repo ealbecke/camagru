@@ -1,0 +1,21 @@
+body{
+	background-color: white;
+}
+
+p, input{
+	margin: 0;
+	padding: 0;
+}
+
+header{
+	margin: 0;
+	background-color: #EEEEEE
+}
+
+.flash_green{
+	color: green;
+}
+
+.flash_red{
+	color: red;
+}
