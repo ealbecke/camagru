@@ -1,35 +1,35 @@
 <?php
-if ((isset($_POST['mail'])) && isset($_POST['password']) && !empty($_POST['mail']) && !empty($_POST['password']))
+if ((isset($_POST['login'])) && isset($_POST['password']) && !empty($_POST['login']) && !empty($_POST['password']))
 {
-	$mail = htmlspecialchars($_POST['mail']);
+	$login = htmlspecialchars($_POST['login']);
 	$passwd = hash('whirlpool' , htmlspecialchars($_POST['password']));
 	include('connexion_bdd.php');
-	$result = $bdd->prepare('SELECT mail FROM members WHERE mail = :mail');
-	$result->bindValue(':mail', $mail);
+	$result = $bdd->prepare('SELECT login FROM members WHERE login = :login');
+	$result->bindValue(':login', $login);
 	$result->execute();
 	$num = $result->fetchAll();
 	$count = count($num);
 	if ($count == 1)
 	{
-		$res = $bdd->prepare('SELECT actif FROM members WHERE mail = :mail');
-		$res->bindValue(':mail', $_POST['mail']);
+		$res = $bdd->prepare('SELECT actif FROM members WHERE login = :login');
+		$res->bindValue(':login', $login);
 		$res->execute();
 		$rep = $res->fetch();
 		if ($rep['actif'] ==1)
 		{
-			$req = $bdd->prepare('SELECT password FROM members WHERE mail = :mail');
-			$req->bindValue(':mail', $mail);
+			$req = $bdd->prepare('SELECT password FROM members WHERE login = :login');
+			$req->bindValue(':login', $login);
 			$req->execute();
 			$ret = $req->fetch();
 			if ($ret['password'] == $passwd)
 			{
 				session_start();
-				$req = $bdd->prepare('SELECT * FROM members WHERE mail = :mail');
-				$req->bindValue(':mail', $mail);
+				$req = $bdd->prepare('SELECT * FROM members WHERE login = :login');
+				$req->bindValue(':login', $login);
 				$req->execute();
 				$ret = $req->fetch();
-				$_SESSION['mail'] = $mail;
-				$_SESSION['login'] = $ret['login'];
+				$_SESSION['login'] = $login;
+				$_SESSION['mail'] = $ret['mail'];
 				header('location: index.php');
 				exit();	
 			}
