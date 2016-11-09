@@ -27,7 +27,7 @@ if (isset($_POST['ok']))
 			$message = 'Bienvenue sur le site CAMAGRU
 
 				Pour activer votre compte, clique ou copie le lien suivant : 
-				http://e2r1p2.42.fr:8080/camagru/token_activation.php?token='.$token.'&mail='.$mail.'
+				http://localhost:8080/camagru/token_activation.php?token='.$token.'&mail='.$mail.'
 				OU
 				http://localhost/CAMAGRU/token_activation.php?token='.$token.'&mail='.$mail.'
 				----------------
