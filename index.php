@@ -53,9 +53,6 @@ else
 			<button id="startbutton">Prendre une photo</button>
 		</div>
 
-
-
-
 		<div id="side">
       <canvas id="canvas"></canvas>
     
@@ -64,75 +61,7 @@ else
 	</div>
 
 
-<script type="text/javascript">
-
-(function() {
-
-  var streaming = false,
-  video = document.querySelector('#video'),
-  canvas = document.querySelector('#canvas'),
-  //photo = document.querySelector('#photo'),
-  startbutton = document.querySelector('#startbutton'),
-  width = 320,
-  height = 0;
-
-  //OBTENIR LA VIDEO
-  navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-
-  navigator.getMedia(
-  {
-    video: true,
-    audio: false
-  },
-    function(stream)
-    {
-      if (navigator.mozGetUserMedia) //Firefox
-        video.mozSrcObject = stream;
-      else //Chrome
-      {
-        var vendorURL = window.URL || window.webkitURL;
-        video.src = vendorURL.createObjectURL(stream);
-      }
-      video.play();
-    },
-    function(err)
-    {
-      console.log("Error ! GetUserMedia" + err);
-    }
-  );
-
-  //REDIMENSIONNEMENT DE LA VIDEO
-  video.addEventListener('canplay', function(ev){
-    if (!streaming) {
-      height = video.videoHeight / (video.videoWidth/width);
-      video.setAttribute('width', width);
-      video.setAttribute('height', height);
-      canvas.setAttribute('width', width);
-      canvas.setAttribute('height', height);
-      streaming = true;
-    }
-  }, false);
-
-
-//PRENDRE LA PHOTO
-function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    //toDataURL renvoit une image encodé
-    var data = canvas.toDataURL('image/png');
-    console.log(video);
-    console.log(video.src);
-    console.log(canvas);
-    console.log(data);
- //   photo.setAttribute('src', data);
-  }
-
-startbutton.addEventListener('click', function(ev){takepicture();}, false);
-})();
-
-request(pictureLoaded, null, 'GET', '/camagru');
-</script>
+<script src="cam.js"></script>
 
 
 
