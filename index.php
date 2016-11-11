@@ -35,26 +35,22 @@ else
 </header>
 <?php } ?>
 <?php if (isset($_SESSION['login'])){?>
-
-
 	<div id="container">
 		<div id="main">
-	  <video id="video"></video>
+	  		<video id="video"></video>
 			<button id="startbutton">Prendre une photo</button>
+		</div>
+		<div id="choise_pic">
+			<h1>T'es un gros bouffon</h1>
 		</div>
 
 		<div id="side">
 	  		<canvas id="canvas"></canvas>
-
-	  		
 	  		<div id="pic_bdd">
 			  	<?php include 'insert_img.php'; ?>
 			</div>
-
-	  <div id="hello"></div>
+		</div>
 	</div>
-	</div>
-
 
 <script src="cam.js"></script>
 

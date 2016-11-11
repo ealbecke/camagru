@@ -32,6 +32,12 @@ header{
 	background-color: pink;
 }
 
+#choise_pic{
+	width: 68%;
+	display: inline-block;
+	background-color: tomato;
+}
+
 #side{
 	width: 29%;
 	display: inline-block;
