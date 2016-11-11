@@ -1,5 +1,5 @@
 <?php
-	session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,17 +9,7 @@
 </head>
 <body>
 <?php
-echo $_SESSION['flash']['mail_token'];
-echo $_SESSION['flash']['validate'];
-echo $_SESSION['flash']['inscription'];
-echo $_SESSION['flash']['pb'];
-echo $_SESSION['flash']['new_pwd'];
-
-$_SESSION['flash']['validate'] = NULL;
-$_SESSION['flash']['mail_token'] = NULL;
-$_SESSION['flash']['inscription'] = NULL;
-$_SESSION['flash']['pb'] = NULL;
-$_SESSION['flash']['new_pwd'] = NULL;
+include 'print_error.php';
 if (isset($_SESSION['login']))
 {
 	echo "Vous etes connecté";
@@ -49,22 +39,24 @@ else
 
 	<div id="container">
 		<div id="main">
-      <video id="video"></video>
+	  <video id="video"></video>
 			<button id="startbutton">Prendre une photo</button>
 		</div>
 
 		<div id="side">
-      <canvas id="canvas"></canvas>
-    
-      <div id="hello"></div>
-    </div>
+	  		<canvas id="canvas"></canvas>
+
+	  		
+	  		<div id="pic_bdd">
+			  	<?php include 'insert_img.php'; ?>
+			</div>
+
+	  <div id="hello"></div>
+	</div>
 	</div>
 
 
 <script src="cam.js"></script>
-
-
-
 
 <?php } ?>
 <footer></footer>

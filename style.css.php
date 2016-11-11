@@ -34,15 +34,16 @@ header{
 
 #side{
 	width: 29%;
+	height: 500px;
 	display: inline-block;
 	background-color: orange;
 }
 
-
+/*
 #side img{
 	display: block;
 }
-/*
+
 footer{
 	width: 100%;
 	height: 200px;

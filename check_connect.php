@@ -30,6 +30,8 @@ if ((isset($_POST['login'])) && isset($_POST['password']) && !empty($_POST['logi
 				$ret = $req->fetch();
 				$_SESSION['login'] = $login;
 				$_SESSION['mail'] = $ret['mail'];
+				$_SESSION['id'] = $ret['id'];
+				$bdd = NULL;
 				header('location: index.php');
 				exit();	
 			}
@@ -38,6 +40,7 @@ if ((isset($_POST['login'])) && isset($_POST['password']) && !empty($_POST['logi
 				header ('location: index.php');
 				session_start();
 				$_SESSION['flash']['ps_begin_page(psdoc, width, height)'] = "<p class=\"flash_red\">Mot de passe Incorrect</p>";
+				$bdd = NULL;
 				exit();
 			}
 		}
@@ -46,6 +49,7 @@ if ((isset($_POST['login'])) && isset($_POST['password']) && !empty($_POST['logi
 			header ('location: index.php');
 			session_start();
 			$_SESSION['flash']['pb'] = '<p class="flash_red">Vous devez valider votre inscription via le Mail</p>';
+			$bdd = NULL;
 			exit();
 		}
 
@@ -55,6 +59,7 @@ if ((isset($_POST['login'])) && isset($_POST['password']) && !empty($_POST['logi
 		header ('location: index.php');
 		session_start();
 		$_SESSION['flash']['pb'] = "<p class=\"flash_red\">Vous n'etes pas inscrit</p>";
+		$bdd = NULL;
 		exit();
 	}
 }
