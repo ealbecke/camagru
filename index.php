@@ -35,14 +35,20 @@ else
 </header>
 <?php } ?>
 <?php if (isset($_SESSION['login'])){?>
+	
+
+
 	<div id="container">
+		
+
+
 		<div id="main">
 	  		<video id="video"></video>
 			<button id="startbutton">Prendre une photo</button>
 		</div>
-		<div id="choise_pic">
-			<h1>T'es un gros bouffon</h1>
-		</div>
+
+
+
 
 		<div id="side">
 	  		<canvas id="canvas"></canvas>
@@ -50,7 +56,41 @@ else
 			  	<?php include 'insert_img.php'; ?>
 			</div>
 		</div>
+
+
+
+
+
+		<div id="choise_pic">
+
+<form>
+		<INPUT type="radio" id="validate" name="cou" value="1">
+		<label for="validate">
+			<img class="filter" src="filter/validate.png">
+		</label>
+
+
+		<INPUT type="radio" id="beard" name="cou" value="2">
+		<label for="beard">
+				<img class="filter" src="filter/beard.png">
+		</label>
+
+		<INPUT type= "radio" id="glass" name="cou" value="3">
+		<label for="glass">
+				<img class="filter" src="filter/lunette.png">
+		</label>
+</form>
+
+			<h1>T'es un gros bouffon</h1>
+		</div>
+
+
+
+
 	</div>
+
+
+
 
 <script src="cam.js"></script>
 
