@@ -48,7 +48,7 @@ function alertContents(httpRequest)
 	var streaming = false,
 	video = document.querySelector('#video'),
 	canvas = document.querySelector('#canvas'),
-	//photo = document.querySelector('#photo'),
+	//filter = document.querySelector('#'),
 	startbutton = document.querySelector('#startbutton'),
 	width = 320,
 	height = 0;
@@ -87,8 +87,7 @@ function alertContents(httpRequest)
 			streaming = true;
 		}
 	}, false);
-
-
+	
 	//PRENDRE LA PHOTO
 	function takepicture() {
 		canvas.width = width;
