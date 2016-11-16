@@ -7,5 +7,5 @@
 	$ret = $result->fetchAll();
 
 foreach ($ret as $elem)
-	echo "<img src='pictures/$elem[2].jpg'/>";
+	echo "<img src='pictures/$elem[2]'/>";
 ?>

@@ -1,5 +1,5 @@
 
-function makeRequest(url, data) {
+function makeRequest(url, Data) {
 	
 	var httpRequest = false;
 
@@ -19,20 +19,19 @@ function makeRequest(url, data) {
 		alertContents(httpRequest);
 	};
 		
-	httpRequest.open('POST', url, true);
-	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	httpRequest.send('param1=' + data);
-
+	httpRequest.open("POST", url, true);
+	httpRequest.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+	httpRequest.send(JSON.stringify(Data));
 }
 
 function alertContents(httpRequest)
 {	
-	// console.log(httpRequest)
 	// 4 => terminé
 	if (httpRequest.readyState == 4)
 	{
 		if (httpRequest.status == 200 || httpRequest.status == 0)
 		{
+			//console.log(httpRequest)
   			e = document.getElementById("pic_bdd");
 			e.innerHTML = "<img src='" + httpRequest.responseText + "'/>" + e.innerHTML 
 		}
@@ -43,12 +42,31 @@ function alertContents(httpRequest)
 	}
 }
 
+function disabledButton() {
+	var validate = document.getElementById('validate').checked;
+	var beard = document.getElementById('beard').checked;
+	var glass = document.getElementById('glass').checked;
+	if (validate == true || beard == true || glass == true)
+	{
+		var button = document.getElementById('buttonUpload');
+		button.removeAttribute('disabled');
+		button.classList.remove('disabled');
+
+		var filt = document.getElementById('filterUpload');
+		if (validate == true)
+			filt.value = "validate";
+		else if (beard == true)
+			filt.value = "beard";
+		else if (glass == true)
+			filt.value = "glass";
+	}
+}
+
 (function() {
 
 	var streaming = false,
 	video = document.querySelector('#video'),
 	canvas = document.querySelector('#canvas'),
-	//filter = document.querySelector('#'),
 	startbutton = document.querySelector('#startbutton'),
 	width = 320,
 	height = 0;
@@ -90,11 +108,21 @@ function alertContents(httpRequest)
 	
 	//PRENDRE LA PHOTO
 	function takepicture() {
-		canvas.width = width;
-		canvas.height = height;
-		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-		var data = canvas.toDataURL("image/png");
-		makeRequest('/camagru/test.php?param1=', data);
+		pic_over = document.querySelector('input[name="toc"]:checked').value
+		if ((pic_over == "validate") || (pic_over == "beard") || (pic_over == "glass")) {
+			
+					canvas.width = width;
+					canvas.height = height;
+					canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+
+					var Data = {
+						image: canvas.toDataURL("image/png"),
+						over: pic_over,
+						type: "webcam"
+					}
+		
+			makeRequest("/camagru/test.php", Data);
+		}
 	}
 
 	startbutton.addEventListener('click', function(){
