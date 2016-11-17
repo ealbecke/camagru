@@ -11,7 +11,8 @@
 		if (isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['password']) && !empty($_POST['password']))
 		{
 			$login = htmlspecialchars($_POST['login']);
-			$mail = htmlspecialchars($_POST['mail']);
+			//$mail = htmlspecialchars($_POST['mail']);
+			$mail = "maxime@conseilemploi.fr";
 			$passwd = hash('whirlpool' , htmlspecialchars($_POST['password']));
 			$token = sha1(uniqid(rand()));
 			include('connexion_bdd.php');

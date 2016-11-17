@@ -36,9 +36,7 @@ function alertContents(httpRequest)
 			e.innerHTML = "<img src='" + httpRequest.responseText + "'/>" + e.innerHTML 
 		}
 		else
-		{
 			alert('Un problème est survenu avec la requête.');
-		}
 	}
 }
 
@@ -80,9 +78,7 @@ function disabledButton() {
 	},
 	function(stream) {
 		if (navigator.mozGetUserMedia) //Firefox
-		{
 			video.mozSrcObject = stream;
-		}
 		else //Chrome
 		{
 			var vendorURL = window.URL || window.webkitURL;
@@ -117,8 +113,7 @@ function disabledButton() {
 
 					var Data = {
 						image: canvas.toDataURL("image/png"),
-						over: pic_over,
-						type: "webcam"
+						over: pic_over
 					}
 		
 			makeRequest("/camagru/test.php", Data);

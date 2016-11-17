@@ -19,6 +19,8 @@ if (isset($_SESSION['login']))
 	echo "mail: ".$_SESSION['mail'];
 	echo "<br />";
 	echo "<a href=\"logout.php\">Se déconecter</a>";
+	echo "<br />";
+	echo "<a href=\"galerie.php\">GALERIE</a>";
 }
 else
 {
@@ -35,7 +37,10 @@ else
 </header>
 <?php } ?>
 <?php if (isset($_SESSION['login'])){?>
-
+<?php
+	echo $_SESSION['flash']['error'];
+	$_SESSION['flash']['error'] = NULL;
+?>
 	<div id="container">
 
 		<div id="main">
@@ -83,6 +88,7 @@ else
 					</label>
 			</form>
 		</div>
+		<div id="delete"><a href="user_picture.php">Supprimer des photos</a></div>
 	</div>
 
 <script type="text/javascript">
