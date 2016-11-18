@@ -19,7 +19,7 @@ if ($data["image"]) {
 	$sx = imagesx($stamp);
 	$sy = imagesy($stamp);
 	imagecopy($im, $stamp, imagesx($im) - $sx - $marge_right, imagesy($im) - $sy - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
-	$name = $_SESSION['login'] . "_" . time(0) . ".jpg";
+	$name = $_SESSION['login'] . "_" . time(0) . '-' . bin2hex(random_bytes(5)) . ".jpg";
 	imagejpeg($im, "pictures/".$name);
 
 	include('connexion_bdd.php');

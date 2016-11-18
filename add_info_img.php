@@ -1,10 +1,9 @@
 <?php
 session_start();
-
-$member_pic = htmlspecialchars($_POST['name_member']);
-$id_pic = htmlspecialchars($_POST['id_picture']);
-$name_pic = htmlspecialchars($_POST['name_picture']);
-
+include ("user_only.php");
+$member_pic = addslashes(htmlentities(htmlspecialchars($_POST['name_member'])));
+$id_pic = addslashes(htmlentities(htmlspecialchars($_POST['id_picture'])));
+$name_pic = addslashes(htmlentities(htmlspecialchars($_POST['name_picture'])));
 if ($_SESSION['login'] == $member_pic)
 {
 	include('connexion_bdd.php');

@@ -100,22 +100,19 @@ function disabledButton() {
 			canvas.setAttribute('height', height);
 			streaming = true;
 		}
-	}, false);
-	
+	}, true);
+
 	//PRENDRE LA PHOTO
 	function takepicture() {
 		pic_over = document.querySelector('input[name="toc"]:checked').value
 		if ((pic_over == "validate") || (pic_over == "beard") || (pic_over == "glass")) {
-			
-					canvas.width = width;
-					canvas.height = height;
-					canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-
-					var Data = {
-						image: canvas.toDataURL("image/png"),
-						over: pic_over
-					}
-		
+			canvas.width = width;
+			canvas.height = height;
+			canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+			var Data = {
+				image: canvas.toDataURL("image/png"),
+				over: pic_over
+			}
 			makeRequest("/camagru/test.php", Data);
 		}
 	}

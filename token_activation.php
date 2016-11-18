@@ -1,34 +1,37 @@
 <?php
-	if ((isset($_GET['token'])) && (isset($_GET['mail'])) && (!empty($_GET['token'])) && (!empty($_GET['mail'])))
+	if ((isset($_GET['token'])) && (isset($_GET['login'])) && (!empty($_GET['token'])) && (!empty($_GET['login'])))
 	{
-		$token = htmlspecialchars($_GET['token']);
-		$mail = htmlspecialchars($_GET['mail']);
+		session_start();
+		$token = addslashes(htmlentities(htmlspecialchars($_GET['token'])));
+		$login = addslashes(htmlentities(htmlspecialchars($_GET['login'])));
 		include ('connexion_bdd.php');
-		$q = array ('mail'=>$mail, 'token'=>$token);
-		$sql = "SELECT mail, token FROM members WHERE mail = :mail AND token = :token";
+		$q = array ('login'=>$login, 'token'=>$token);
+		$sql = "SELECT login, token FROM members WHERE login = :login AND token = :token";
 		$req = $bdd->prepare($sql);
 		$req->execute($q);
 		$count = $req->rowCount($sql);
 		if ($count == 1)
 		{
-			$v = array ('mail'=>$mail, 'actif'=>'1');
-			$sql = "SELECT mail, actif FROM members WHERE mail = :mail AND actif = :actif";
+			$v = array ('login'=>$login, 'actif'=>'1');
+			$sql = "SELECT login, actif FROM members WHERE login = :login AND actif = :actif";
 			$req = $bdd->prepare($sql);
 			$req->execute($v);
 			$dejactif = $req->rowCount($sql);
 			if ($dejactif == 1)
 			{
-				echo "utilisateur deja actif";
+				$_SESSION['flash']['token'] = "<p class=\"flash_green\">Utilisateur deja actif</p>";
+				header('location: index.php');
+				exit();
 			}
 			else
 			{
-				session_start();
-				$u = array ('actif'=>'1', 'mail'=>$mail);
-				$sql = 'UPDATE members SET actif = :actif WHERE mail = :mail';
+				$u = array ('actif'=>'1', 'login'=>$login);
+				$sql = 'UPDATE members SET actif = :actif WHERE login = :login';
 				$req = $bdd->prepare($sql);
 				$req->execute($u);
 				header('location: index.php');
 				$_SESSION['flash']['validate'] = "<p class=\"flash_green\">le compte est activer</p>";
+				exit();
 			}
 		}
 		else

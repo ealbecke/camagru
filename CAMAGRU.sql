@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS pictures (
 );
 
 CREATE TABLE IF NOT EXISTS comments (id_comment INT(6) UNSIGNED NOT NULL AUTO_INCREMENT, sender VARCHAR(255) NOT NULL, recipient VARCHAR(255) NOT NULL, id_picture INT(6) NOT NULL, name_picture VARCHAR(255) NOT NULL, commentaire VARCHAR(255) NOT NULL, PRIMARY KEY (id_comment));
+CREATE TABLE IF NOT EXISTS likes (id_like INT(6) UNSIGNED NOT NULL AUTO_INCREMENT, sender VARCHAR(255) NOT NULL, recipient VARCHAR(255) NOT NULL, id_picture INT(6) NOT NULL, name_picture VARCHAR(255) NOT NULL, active TINYINT(1) NOT NULL, PRIMARY KEY (id_like));
 
 
 INSERT INTO comments (sender, recipient, id_picture, name_picture, commentaire) VALUES ("eliot", "Tom", 83, "tom_14793886077", "Ceci est mon commentaire ;)");
+INSERT INTO likes (sender, recipient, id_picture, name_picture, active) VALUES ("eliot", "Tom", 401, "msourdin_1479465869-78d13cc208.jpg", 1);
