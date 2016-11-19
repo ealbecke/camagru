@@ -56,7 +56,7 @@
 	<title>Inscription</title>
 </head>
 <body>
-<?php include("header_registration.php");
+<?php include("headers/header_registration.php");
 	echo $_SESSION['flash']['registration'];
 	$_SESSION['flash']['registration'] = NULL;
 ?>

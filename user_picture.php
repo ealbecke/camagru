@@ -19,6 +19,7 @@
 </head>
 <body>
 <?php
+	include('headers/header.php');
 	$ret = $result->fetchAll();
 
 	foreach ($ret as $elem)

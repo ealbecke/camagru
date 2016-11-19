@@ -4,8 +4,10 @@ if(isset($_POST['pass'])) {
 	if (isset($_POST['pwd1']) && !empty($_POST['pwd1']) && isset($_POST['pwd2']) && !empty($_POST['pwd2'])) {
 		$pwd1 = hash('whirlpool' , addslashes(htmlentities(htmlspecialchars($_POST['pwd1']))));
 		$pwd2 = hash('whirlpool' , addslashes(htmlentities(htmlspecialchars($_POST['pwd2']))));
+		$_POST['pwd1'] = NULL;
+		$_POST['pwd2'] = NULL;
 		if ($pwd1 == $pwd2) {
-			$login_pw = $_POST['login_pwd'];
+			$login_pw = addslashes(htmlentities(htmlspecialchars($_POST['login_pw'])));
 			include('connexion_bdd.php');
 			$result = $bdd->prepare('SELECT login FROM members WHERE login = :login');
 			$result->bindValue(':login', $login_pw);
@@ -16,6 +18,8 @@ if(isset($_POST['pass'])) {
 				$req = $bdd->prepare("UPDATE members SET password = '$pwd1' WHERE login = '$login_pw'");
 				$req->execute();
 				$bdd = NULL;
+				$pwd1 = NULL;
+				$pwd2 = NULL;
 				header('location: index.php');
 				$_SESSION['flash']['info'] = "<p class=\"flash_green\">Votre mot de passe a ete changé avec succes !</p>";
 			}
@@ -74,6 +78,7 @@ if (isset($_POST['login']) && !empty($_POST['login'])) {
 		mail($mail, $sujet, $message, $entete);
 		$_SESSION['flash']['info'] = "<p class=\"flash_green\"> On vous a envoye un mail !</p>";
 		header('location: index.php');
+		exit();
 	}
 	else
 		$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">Ce login ne match pas !</p>";

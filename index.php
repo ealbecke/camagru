@@ -9,13 +9,36 @@ session_start();
 </head>
 <body>
 <?php
-include ("header_index.php");
+include ("headers/header_index.php");
 include("flash_messages.php");
 if (isset($_SESSION['login'])){
 ?>
 	<div id="container">
 
 		<div id="main">
+	  		<div id="choise_pic">
+			<form>
+					<INPUT type="radio" style='visibility:hidden;display:none' name="toc" value="NULL" checked>
+
+					<INPUT type="radio" onclick="disabledButton()" id="validate" name="toc" value="validate">
+					<label for="validate">
+						<img class="filter" src="filter/validate.png">
+					</label><br />
+
+					<INPUT type="radio" onclick="disabledButton()" id="beard" name="toc" value="beard">
+					<label for="beard">
+							<img class="filter" src="filter/beard.png">
+					</label><br />
+
+					<INPUT type= "radio" onclick="disabledButton()" id="glass" name="toc" value="glass">
+					<label for="glass">
+							<img class="filter" src="filter/glass.png">
+					</label>
+			</form>
+		</div>	
+
+
+
 	  		<video id="video"></video>
 
 
@@ -41,25 +64,8 @@ if (isset($_SESSION['login'])){
 			</div>
 		</div>
 
-		<div id="choise_pic">
-			<form>
-					<INPUT type="radio" style='visibility:hidden;display:none' name="toc" value="NULL" checked>
-					<INPUT type="radio" onclick="disabledButton()" id="validate" name="toc" value="validate">
-					<label for="validate">
-						<img class="filter" src="filter/validate.png">
-					</label>
 
-					<INPUT type="radio" onclick="disabledButton()" id="beard" name="toc" value="beard">
-					<label for="beard">
-							<img class="filter" src="filter/beard.png">
-					</label>
 
-					<INPUT type= "radio" onclick="disabledButton()" id="glass" name="toc" value="glass">
-					<label for="glass">
-							<img class="filter" src="filter/glass.png">
-					</label>
-			</form>
-		</div>
 		<div id="delete"><a href="user_picture.php">Supprimer des photos</a></div>
 	</div>
 

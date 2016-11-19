@@ -1,13 +1,13 @@
 <?php
 session_start();
 include ("user_only.php");
+$id_picture = addslashes(htmlentities(htmlspecialchars($_POST['id_picture'])));
+$name_picture = addslashes(htmlentities(htmlspecialchars($_POST['name_picture'])));
+$sender = addslashes(htmlentities(htmlspecialchars($_POST['sender'])));
+$recipient = addslashes(htmlentities(htmlspecialchars($_POST['recipient'])));
 if (isset($_POST['commentaire']) && !empty($_POST['commentaire']))
 {
 	$commentaire = addslashes(htmlentities(htmlspecialchars($_POST['commentaire'])));
-	$sender = addslashes(htmlentities(htmlspecialchars($_POST['sender'])));
-	$recipient = addslashes(htmlentities(htmlspecialchars($_POST['recipient'])));
-	$id_picture = addslashes(htmlentities(htmlspecialchars($_POST['id_picture'])));
-	$name_picture = addslashes(htmlentities(htmlspecialchars($_POST['name_picture'])));
 	include('connexion_bdd.php');
 	$result =  $bdd->query("INSERT INTO comments (sender, recipient, id_picture, name_picture, commentaire) VALUES ('$sender', '$recipient', '$id_picture', '$name_picture', '$commentaire')");
 	$ret = $bdd->prepare("SELECT mail FROM members WHERE login = '$recipient'");
