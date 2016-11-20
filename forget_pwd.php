@@ -96,6 +96,7 @@ echo $_SESSION['flash']['forget_pwd'];
 $_SESSION['flash']['forget_pwd'] = NULL;
 if ((!isset($_POST['login']))  || (isset($_POST['login']) && empty($_POST['login'])) ||(isset($count) && $count == 0)) {
 	if (!isset($_GET['login']) && !isset($_POST['pass'])) {
+		echo "<p>Merce d'inscire votre login pour que l'on vous envoie un mail</p>";
 		echo "<form action=\"forget_pwd.php\" method=\"post\">";
 		echo "<p>login: <input type=\"text\" name=\"login\"></p>";
 		echo "<input type=\"submit\" name=\"ok\" value=\"Envoyer\">";

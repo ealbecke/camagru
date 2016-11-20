@@ -3,23 +3,34 @@ body{
 	margin: 0;
 }
 
-p, input, h1, h2, h3, h4, h5, h6{
+p, input, h1, h2, h3, h4, h5, h6, ul{
 	margin: 0;
 	margin-top: 0;
 	padding: 0;
 }
 
-header a{
-	text-decoration: none;
+.flash_green{
+	background-color: #9ACD32;
 	color: white;
-	float: right;
 }
 
+.flash_red{
+	background-color: #B22222;
+	color: white;
+}
 
+ul{
+	list-style-type: none;
+	text-decoration: none;
+}
 
+li{
+	float: left;
+}
 
-
-
+/**************************************************/
+/********************  HEADER  ********************/
+/**************************************************/
 
 
 header{
@@ -30,32 +41,113 @@ header{
 	padding: 0px;
 }
 
+header a{
+	text-decoration: none;
+	color: white;
+}
+
 #logo_header{
-	margin-top: 0px;
 	float: left;
+	margin-top: 35px;
 	font-size: 1.8em;
-	padding-top: 40px;
-	padding-left: 1%;
 }
 
-#bt_header{
-	display: inline-block;
+header ul{
+	width: 60%;
 	float: right;
-	padding-top: 1%;
-	padding-right: 1%;
+	margin-top: 35px;
+	list-style-type: none;
+	text-decoration: none;
+}
+
+header li{
+	float: left;
+	width: 27%;
+	margin-right: 5%;
+}
+
+
+
+/*************************************************/
+/********************  INDEX  ********************/
+/*************************************************/
+
+.container{
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+#choose_filter{
+	width: 100%;
+	height: 250px;
+/*	background-color: red;*/
+}
+
+#choose_filter p{
+}
+
+#choose_filter li{
+	float: left;
 	width: 25%;
+	margin-right: 3%;
+	margin-left: 3%;
+	border: 1px solid black;
+/*	background-color: blue;*/
 }
 
-#bt_header a
-{
+.filter{
+	width: 70%;
+	height: 150px;
+	display: inline;
+/*	background-color: purple;*/
+}
+
+#select_picture{
+	height: 320px;
+}
+
+#webcam{
+	width: 30%;
+	margin-left: 10%;
+	margin-top: 25px;
+	float: left;
+}
+
+.bt_turquoise{
+	background-color: rgb(79, 149, 168);
+	font-size: 20px;
+	size: 10px;
+	color: white;
+	font-family: arial bold;
+	border-radius: 8px;
+	margin-left: 15%;
+}
+
+
+#upload_form{
+	width: 30%;
 	float: right;
+	margin-right: 10%;
+	margin-top: 25px;
+	border: 1px solid black;
 }
 
-.bt{
-	background-color: rgb(0, 147, 208);
-	border-radius: 10%;
-	text-align: center;
+#upload_form input{
+	margin-top: 20px;
 }
+
+.infos_general{
+	width: 35%;
+	height: 200px;
+	margin: auto;
+	margin-top: 150px;
+	text-align: center;
+	font-size: 2em;
+}
+
+/*************************************************/
+/*******************  GALERIE  *******************/
+/*************************************************/
 
 .galerie{
 	width: 95%;
@@ -77,42 +169,29 @@ header{
 	display: inline-block;
 }
 
-.flash_green{
-	color: green;
-}
-
-.flash_red{
-	color: red;
-}
-
-#container{
+#return_pic{
 	width: 100%;
-	color: red;
-	float: right;
+	height: 300px;
+	margin-top: 20px;
 }
-
-.main{
-	width: 68%;
-	float: left;
-	background-color: pink;
-}
-
-
-
-#choise_pic{
-	width: 20%;
-	float: left;
-	background-color: tomato;
-}
-
-
-
-
-
 
 canvas{
+	width: 20%;
+	float: left;
+}
+
+#pic_bdd
+{
+	width: 70%;
 	float: right;
 }
+
+#pic_bdd img{
+	display: inline-block;
+	padding-right: 3%;
+}
+
+/*
 
 #side{
 	width: 29%;
@@ -120,13 +199,7 @@ canvas{
 	float: right;
 }
 
-
 #side img{
 	display: block;
 }
-
-
-.filter{
-	width: 20%;
-	display: inline;
-}
+*/
