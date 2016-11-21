@@ -1,36 +1,44 @@
 <?php
 session_start();
-if(isset($_POST['pass'])) {
-	if (isset($_POST['pwd1']) && !empty($_POST['pwd1']) && isset($_POST['pwd2']) && !empty($_POST['pwd2'])) {
-		$pwd1 = hash('whirlpool' , addslashes(htmlentities(htmlspecialchars($_POST['pwd1']))));
-		$pwd2 = hash('whirlpool' , addslashes(htmlentities(htmlspecialchars($_POST['pwd2']))));
-		$_POST['pwd1'] = NULL;
-		$_POST['pwd2'] = NULL;
-		if ($pwd1 == $pwd2) {
-			$login_pw = addslashes(htmlentities(htmlspecialchars($_POST['login_pw'])));
-			include('connexion_bdd.php');
-			$result = $bdd->prepare('SELECT login FROM members WHERE login = :login');
-			$result->bindValue(':login', $login_pw);
-			$result->execute();
-			$num = $result->fetchAll();
-			$count = count($num);
-			if ($count == 1) {
-				$req = $bdd->prepare("UPDATE members SET password = '$pwd1' WHERE login = '$login_pw'");
-				$req->execute();
+if(isset($_POST['pass']))
+{
+	$pattern = '/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])/';
+	if (preg_match($pattern, $_POST['pwd1']))
+	{
+		if (isset($_POST['pwd1']) && !empty($_POST['pwd1']) && isset($_POST['pwd2']) && !empty($_POST['pwd2'])) {
+			$pwd1 = hash('whirlpool' , addslashes(htmlentities(htmlspecialchars($_POST['pwd1']))));
+			$pwd2 = hash('whirlpool' , addslashes(htmlentities(htmlspecialchars($_POST['pwd2']))));
+			$_POST['pwd1'] = NULL;
+			$_POST['pwd2'] = NULL;
+			if ($pwd1 == $pwd2) {
+				$login_pw = addslashes(htmlentities(htmlspecialchars($_POST['login_pw'])));
+				include('connexion_bdd.php');
+				$result = $bdd->prepare('SELECT login FROM members WHERE login = :login');
+				$result->bindValue(':login', $login_pw);
+				$result->execute();
+				$num = $result->fetchAll();
+				$count = count($num);
+				if ($count == 1) {
+					$req = $bdd->prepare("UPDATE members SET password = '$pwd1' WHERE login = '$login_pw'");
+					$req->execute();
+					$bdd = NULL;
+					$pwd1 = NULL;
+					$pwd2 = NULL;
+					$_SESSION['flash']['info'] = "<p class=\"flash_green\">Votre mot de passe a ete changé avec succes !</p>";
+					header('location: index.php');
+				}
 				$bdd = NULL;
-				$pwd1 = NULL;
-				$pwd2 = NULL;
-				header('location: index.php');
-				$_SESSION['flash']['info'] = "<p class=\"flash_green\">Votre mot de passe a ete changé avec succes !</p>";
 			}
-			$bdd = NULL;
+			else
+				$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">Les mots de passe ne sont pas les memes</p>";
 		}
 		else
-			$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">Les mots de passe ne sont pas les memes</p>";
+			$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">Il faut remplir les deux champs pour le mot de passe</p>";
+		header('location: index.php');
 	}
 	else
-		$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">Il faut remplir les deux champs pour le mot de passe</p>";
-	header('location: index.php');
+		$_SESSION['flash']['forget_pwd'] = '<p class="flash_red">Veuillez vous assurer qu\'il y a au min une Maj, une Min ainsi qu\'un chiffre</p>';
+
 }
 if (isset($_GET['login']) && !empty($_GET['login'])) {
 	$log = addslashes(htmlentities(htmlspecialchars($_GET['login'])));
@@ -71,11 +79,9 @@ if (isset($_POST['login']) && !empty($_POST['login'])) {
 		$entete = "From: camagru.fr";
 		$message = 'Pour reset ton mot de passe, click sur le lien suivant :
 
-			http://localhost:8080/camagru/forget_pwd.php?login='.$login.'
-			OU
-			http://localhost/camagru/forget_pwd.php?login='.$login.'
-			OU
-			http://localhost/CAMAGRU/forget_pwd.php?login='.$login.'
+			http://localhost:8080/CAMAGRU/forget_pwd.php?login='.$login.'
+
+			ICI
 			----------------
 			Ceci est un mail automatique.';
 		mail($mail, $sujet, $message, $entete);
