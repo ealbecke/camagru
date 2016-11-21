@@ -1,5 +1,4 @@
  body{
-	background-color: white;
 	margin: 0;
 }
 
@@ -7,6 +6,10 @@ p, input, h1, h2, h3, h4, h5, h6, ul{
 	margin: 0;
 	margin-top: 0;
 	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 .flash_green{
@@ -83,7 +86,7 @@ header li a:hover{
 
 .container{
 	width: 100%;
-	background-color: #FFFFFF;
+	background-color: lightblue;
 	display: inline-block;
 }
 
@@ -94,6 +97,8 @@ header li a:hover{
 }
 
 #choose_filter p{
+	font-family: Verdana;
+	margin-bottom: 15px;
 }
 
 #choose_filter li{
@@ -102,6 +107,7 @@ header li a:hover{
 	margin-right: 3%;
 	margin-left: 3%;
 	border: 1px solid black;
+	padding: 5px;
 /*	background-color: blue;*/
 }
 
@@ -114,6 +120,10 @@ header li a:hover{
 
 #select_picture{
 	height: 320px;
+}
+
+#select_picture p{
+	font-family: Verdana;
 }
 
 #webcam{
@@ -144,6 +154,11 @@ header li a:hover{
 
 #upload_form input{
 	margin-top: 20px;
+}
+
+.center_bloc{
+	display: block;
+	margin: 0 auto;
 }
 
 .infos_general{
@@ -200,10 +215,11 @@ canvas{
 	width: 95%;
 	margin: auto;
 	margin-top: 5%;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	padding-top: 15px;
 	padding-bottom: 15px;
 	padding-left: 15px;
+	background-color: lightblue;
 }
 
 

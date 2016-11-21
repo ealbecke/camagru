@@ -22,24 +22,24 @@ if (isset($_SESSION['login'])){
 				<ul>
 					<INPUT type="radio" style='visibility:hidden;display:none' name="toc" value="NULL" checked>
 					<li>
-						<INPUT type="radio" onclick="disabledButton()" id="validate" name="toc" value="validate">
-						<label for="validate">
+						<label for="validate" class="center_bloc">
 							<img class="filter" src="filter/validate.png">
 						</label>
+						<INPUT type="radio" onclick="disabledButton()" id="validate" name="toc" class="center_bloc" value="validate">
 					</li>
 
 					<li>
-						<INPUT type="radio" onclick="disabledButton()" id="beard" name="toc" value="beard">
-						<label for="beard">
+						<label for="beard" class="center_bloc">
 							<img class="filter" src="filter/beard.png">
 						</label>
+						<INPUT type="radio" onclick="disabledButton()" id="beard" class="center_bloc" name="toc" value="beard">
 					</li>
 
 					<li>
-						<INPUT type= "radio" onclick="disabledButton()" id="glass" name="toc" value="glass">
-						<label for="glass">
+						<label for="glass" class="center_bloc">
 							<img class="filter" src="filter/glass.png">
 						</label>
+						<INPUT type= "radio" onclick="disabledButton()" id="glass" class="center_bloc" name="toc" value="glass">
 					</li>
 				</ul>
 			</form>

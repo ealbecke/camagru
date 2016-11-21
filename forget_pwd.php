@@ -105,6 +105,12 @@ if (isset($_POST['login']) && !empty($_POST['login'])) {
 </head>
 <body>
 <?php
+if (!$_SESSION['login'])
+{
+?>
+	<header><a href="index.php">Accueil</a></header>
+<?php
+}
 echo $_SESSION['flash']['forget_pwd'];
 $_SESSION['flash']['forget_pwd'] = NULL;
 if ((!isset($_POST['login']))  || (isset($_POST['login']) && empty($_POST['login'])) ||(isset($count) && $count == 0)) {
