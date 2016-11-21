@@ -1,4 +1,4 @@
-body{
+ body{
 	background-color: white;
 	margin: 0;
 }
@@ -84,6 +84,7 @@ header li a:hover{
 .container{
 	width: 100%;
 	background-color: #FFFFFF;
+	display: inline-block;
 }
 
 #choose_filter{
@@ -158,6 +159,7 @@ header li a:hover{
 	width: 100%;
 	height: 300px;
 	margin-top: 20px;
+	display: block;
 }
 
 canvas{
@@ -184,6 +186,10 @@ canvas{
 	margin-left: 0;
 	width: 10%;
 	text-decoration: none;
+}
+
+#bt_galerie{
+	font-size: 1.2em;
 }
 
 /*************************************************/
@@ -230,6 +236,27 @@ canvas{
 	color: black;
 }
 
+/************************************************/
+/*******************  footer  *******************/
+/************************************************/
+
+footer{
+	width: 100%;
+	height: 20px;
+	background-color: rgb(82,100,120);
+	
+	position: fixed;
+	bottom:0;
+	display: block;
+	clear:both;
+	margin-top: 20px;
+}
+
+footer p{
+	text-align: center;
+	color: white;
+	padding-top: 3px;
+}
 
 /****************************************************/
 /*******************  forget_pwd  *******************/

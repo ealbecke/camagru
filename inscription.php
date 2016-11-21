@@ -76,5 +76,6 @@
 	$_SESSION['flash']['registration'] = NULL;
 ?>
 <p class="infos_general">Merci de remplir les champs pour vous inscrire</p>
+<footer><p>ealbecke - 2016</p></footer>
 </body>
 </html>

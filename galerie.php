@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include ("user_only.php");
+//	include ("user_only.php");
 	include('connexion_bdd.php');
 	$count = $bdd->query("SELECT COUNT(id) FROM pictures");
 	$count = $count->fetch();
@@ -18,7 +18,13 @@
 	<title>Galerie</title>
 </head>
 <body>
-<?php include ("headers/header.php"); ?>
+<?php include ("headers/header.php");
+if (!$_SESSION['login'])
+{
+	?>
+	<header><a href="index.php">Accueil</a></header>
+	<?php
+	}?>
 	<?php
 		include('connexion_bdd.php');
 		$cnt = $bdd->prepare("SELECT COUNT(id) AS nbrPic FROM pictures");
@@ -50,37 +56,40 @@
 							echo "<p class=\"comment\" >" . $element[0]. "</p>";
 						}
 					}
-					echo '<form action="add_comment.php" method="post">';
-					echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
-					echo '<input type="hidden" id="recipient" name="recipient" value="'.$elem[1].'" />';
-					echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
-					echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['login'].'" />';
-					echo '<input type="text" id="commentaire" name="commentaire" value="" />';
-					echo '<input type="submit" value="Envoyer le commentaire" />';
-					echo '</form>';
+					if (isset($_SESSION['login']))
+					{
+						echo '<form action="add_comment.php" method="post">';
+						echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
+						echo '<input type="hidden" id="recipient" name="recipient" value="'.$elem[1].'" />';
+						echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
+						echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['login'].'" />';
+						echo '<input type="text" id="commentaire" name="commentaire" value="" />';
+						echo '<input type="submit" value="Envoyer le commentaire" />';
+						echo '</form>';
 
-					$return =  $bdd->query("SELECT active FROM likes WHERE id_picture = '$elem[0]'");
-					if ($return->rowCount() == 0)
-					{
-						echo '<form action="add_comment.php" method="post">';
-						echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
-						echo '<input type="hidden" id="recipient" name="recipient" value="'.$elem[1].'" />';
-						echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
-						echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['login'].'" />';
-						echo '<input type="hidden" id="like" name="like" value="1" />';
-						echo '<input type="submit" value="Like" />';
-						echo '</form>';	
-					}
-					else
-					{
-						echo '<form action="add_comment.php" method="post">';
-						echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
-						echo '<input type="hidden" id="recipient" name="recipient" value="'.$elem[1].'" />';
-						echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
-						echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['login'].'" />';
-						echo '<input type="hidden" id="unlike" name="unlike" value="0"/>';
-						echo '<input type="submit" value="UnLike" />';
-						echo '</form>';	
+						$return =  $bdd->query("SELECT active FROM likes WHERE id_picture = '$elem[0]'");
+						if ($return->rowCount() == 0)
+						{
+							echo '<form action="add_comment.php" method="post">';
+							echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
+							echo '<input type="hidden" id="recipient" name="recipient" value="'.$elem[1].'" />';
+							echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
+							echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['login'].'" />';
+							echo '<input type="hidden" id="like" name="like" value="1" />';
+							echo '<input type="submit" value="Like" />';
+							echo '</form>';	
+						}
+						else
+						{
+							echo '<form action="add_comment.php" method="post">';
+							echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
+							echo '<input type="hidden" id="recipient" name="recipient" value="'.$elem[1].'" />';
+							echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
+							echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['login'].'" />';
+							echo '<input type="hidden" id="unlike" name="unlike" value="0"/>';
+							echo '<input type="submit" value="UnLike" />';
+							echo '</form>';	
+						}
 					}
 				echo "</div>";
 			}
@@ -94,5 +103,6 @@
 			}
 		echo "</div>";
 	?>
+	<footer><p>ealbecke - 2016</p></footer>
 </body>
 </html>

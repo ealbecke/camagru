@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo $_SESSION['flash']['forget_pwd'];
 if(isset($_POST['pass']))
 {
 	$pattern = '/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])/';
@@ -24,8 +25,9 @@ if(isset($_POST['pass']))
 					$bdd = NULL;
 					$pwd1 = NULL;
 					$pwd2 = NULL;
-					$_SESSION['flash']['info'] = "<p class=\"flash_green\">Votre mot de passe a ete changé avec succes !</p>";
+					$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_green\">Votre mot de passe a ete changé avec succes !</p>";
 					header('location: index.php');
+					exit();
 				}
 				$bdd = NULL;
 			}
@@ -37,8 +39,11 @@ if(isset($_POST['pass']))
 		header('location: index.php');
 	}
 	else
-		$_SESSION['flash']['forget_pwd'] = '<p class="flash_red">Veuillez vous assurer qu\'il y a au min une Maj, une Min ainsi qu\'un chiffre</p>';
-
+	{
+		$_SESSION['flash']['forget_pwd'] = '<p class="flash_red">Veuillez re-cliquer sur le lien du mail et vous assurer qu\'il y a au min une Maj, une Min ainsi qu\'un chiffre quand vous tapez votre Mot de passe. </p>';
+		header('location: http://localhost:8080/coucou/index.php');
+		exit();
+	}
 }
 if (isset($_GET['login']) && !empty($_GET['login'])) {
 	$log = addslashes(htmlentities(htmlspecialchars($_GET['login'])));
@@ -81,7 +86,6 @@ if (isset($_POST['login']) && !empty($_POST['login'])) {
 
 			http://localhost:8080/CAMAGRU/forget_pwd.php?login='.$login.'
 
-			ICI
 			----------------
 			Ceci est un mail automatique.';
 		mail($mail, $sujet, $message, $entete);
@@ -117,6 +121,7 @@ if ((!isset($_POST['login']))  || (isset($_POST['login']) && empty($_POST['login
 ?>
 
 <!-- LIGNE 30 && 33 il faut faire une verifications de champs en Javascript -->
+<footer><p>ealbecke - 2016</p></footer>
 </body>
 </html>
 

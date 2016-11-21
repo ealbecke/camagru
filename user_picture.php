@@ -37,5 +37,6 @@
 	}
 	echo "</div>";
 ?>
+<footer><p>ealbecke - 2016</p></footer>
 </body>
 </html>

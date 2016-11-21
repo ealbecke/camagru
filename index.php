@@ -92,12 +92,14 @@ if (isset($_SESSION['login'])){
 		<a href="forget_pwd.php">Mot de passe oublie ?</a>
 		<br />
 		<a href="inscription.php">Inscription</a>
+		<br />
+		<a href="galerie.php" id="bt_galerie">Galerie</a>
 	</header>
 	<p class="infos_general">CAMAGRU<br />
 	Merci de vous connectrer ou de vous inscrire sur le site</p>
 	<?php
 }
 	?>
-<footer></footer>
+<footer><p>ealbecke - 2016</p></footer>
 </body>
 </html>

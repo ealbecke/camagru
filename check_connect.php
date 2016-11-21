@@ -39,7 +39,7 @@ if ((isset($_POST['login'])) && isset($_POST['password']) && !empty($_POST['logi
 			{
 				header ('location: index.php');
 				session_start();
-				$_SESSION['flash']['ps_begin_page(psdoc, width, height)'] = "<p class=\"flash_red\">Mot de passe Incorrect</p>";
+				$_SESSION['flash']['pb'] = "<p class=\"flash_red\">Mot de passe Incorrect</p>";
 				$bdd = NULL;
 				exit();
 			}
