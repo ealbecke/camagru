@@ -30,6 +30,7 @@ if(isset($_POST['pass'])) {
 	}
 	else
 		$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">Il faut remplir les deux champs pour le mot de passe</p>";
+	header('location: index.php');
 }
 if (isset($_GET['login']) && !empty($_GET['login'])) {
 	$log = addslashes(htmlentities(htmlspecialchars($_GET['login'])));
@@ -41,12 +42,14 @@ if (isset($_GET['login']) && !empty($_GET['login'])) {
 	$num = $result->fetchAll();
 	$count = count($num);
 	if ($count == 1) {
+		echo "<div class=\"forget_pwd\" >";
 		echo "<form action=\"forget_pwd.php\" method=\"post\">
 		<p>Nouveau: <input type=\"password\" name=\"pwd1\"></p>
 		<p>Confirmer Nouveau: <input type=\"password\" name=\"pwd2\"></p>
 		<input type='hidden' name='login_pwd' value='". $log ."'>
 		<input type=\"submit\" name=\"pass\" value=\"Envoyer\">
 		</form>";
+		echo "</div>";
 	}
 	else
 		$_SESSION['flash']['forget_pwd'] = "<p class=\"flash_red\">NON, NON, NON, de quel droit tu changes l'URL ?
@@ -96,11 +99,13 @@ echo $_SESSION['flash']['forget_pwd'];
 $_SESSION['flash']['forget_pwd'] = NULL;
 if ((!isset($_POST['login']))  || (isset($_POST['login']) && empty($_POST['login'])) ||(isset($count) && $count == 0)) {
 	if (!isset($_GET['login']) && !isset($_POST['pass'])) {
-		echo "<p>Merce d'inscire votre login pour que l'on vous envoie un mail</p>";
+		echo "<div class=\"forget_pwd\" >";
+		echo "<p>Merci d'inscire votre login pour que l'on vous envoie un mail</p>";
 		echo "<form action=\"forget_pwd.php\" method=\"post\">";
 		echo "<p>login: <input type=\"text\" name=\"login\"></p>";
-		echo "<input type=\"submit\" name=\"ok\" value=\"Envoyer\">";
+		echo "<input type=\"submit\" name=\"ok\" class=\"forget_submit\" value=\"Envoyer\">";
 		echo "</form>";
+		echo "</div>";
 	}
 }
 ?>

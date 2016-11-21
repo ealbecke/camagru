@@ -66,6 +66,8 @@ if (isset($_SESSION['login'])){
 		</div>
 
 		<div id="return_pic">
+		<div id="delete"><a href="user_picture.php" class="bt_turquoise">Supprimer des photos</a>
+		</div>
 		<p>3_ le resultat</p>
 	  		<canvas id="canvas"></canvas>
 	  		<div id="pic_bdd">
@@ -73,10 +75,6 @@ if (isset($_SESSION['login'])){
 			</div>
 		</div>
 
-
-
-		<div id="delete"><a href="user_picture.php">Supprimer des photos</a>
-		</div>
 	</div>
 
 <script type="text/javascript">

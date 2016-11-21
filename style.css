@@ -154,30 +154,6 @@ header li a:hover{
 	font-size: 2em;
 }
 
-/*************************************************/
-/*******************  GALERIE  *******************/
-/*************************************************/
-
-.galerie{
-	width: 95%;
-	margin: auto;
-	margin-top: 5%;
-	background-color: red;
-}
-
-
-.galerie_img{
-	width: 25%;
-	margin-bottom: 3%;
-	margin-right: 1%;
-	margin-left: 1%;
-	display: inline-block;
-}
-
-.galerie_img img{
-	display: inline-block;
-}
-
 #return_pic{
 	width: 100%;
 	height: 300px;
@@ -200,15 +176,118 @@ canvas{
 	padding-right: 3%;
 }
 
-/*
-
-#side{
-	width: 29%;
-	background-color: orange;
-	float: right;
+#delete{
+	display: inline-block;
 }
 
-#side img{
-	display: block;
+#delete a{
+	margin-left: 0;
+	width: 10%;
+	text-decoration: none;
 }
-*/
+
+/*************************************************/
+/*******************  GALERIE  *******************/
+/*************************************************/
+
+.galerie{
+	width: 95%;
+	margin: auto;
+	margin-top: 5%;
+	border: 1px solid black;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+}
+
+
+.galerie_img{
+	width: 25%;
+	margin-bottom: 3%;
+	margin-right: 1%;
+	margin-left: 1%;
+	display: inline-block;
+	margin: auto;
+}
+
+.galerie_img img{
+	display: inline-block;
+	width: 80%;
+}
+
+.comment{
+	font-size: 1em;
+}
+
+#pagination{
+	margin-top: 20px;
+	text-align: center;
+	text-decoration: none;
+}
+
+#pagination a{
+	text-decoration: none;
+	color: black;
+}
+
+
+/****************************************************/
+/*******************  forget_pwd  *******************/
+/****************************************************/
+
+.forget_pwd{
+	width: 40%;
+	margin: auto;
+	padding-top: 10%;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-bottom: 10%;
+	margin-top: 100px;
+	border: 1px solid black;
+}
+
+.forget_pwd p{
+	font-size: 1.3em;
+	text-align: center;
+}
+
+.forget_pwd {
+	font-size: 1.3em;
+	text-align: center;
+}
+
+@media screen and (max-width: 1100px) {
+  .comment{
+  	font-size: 0.6em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+	.galerie_img{
+		display: block;
+		width: 60%;
+	}
+
+	.comment{
+  	font-size: 1em;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

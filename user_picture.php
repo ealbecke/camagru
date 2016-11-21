@@ -15,15 +15,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="style.css" type="text/css"/>
 	<title>Mes photos</title>
 </head>
 <body>
 <?php
 	include('headers/header.php');
 	$ret = $result->fetchAll();
-
+	echo "<div class=\"galerie\">";
 	foreach ($ret as $elem)
 	{
+		echo "<div class=\"galerie_img\">";
 		echo "<img src='pictures/$elem[2]'/>";
 		echo '<form action="add_info_img.php" method="post">';
 		echo '<input type="hidden" id="id_picture" name="id_picture" value="'.$elem[0].'" />';
@@ -31,7 +33,9 @@
 		echo '<input type="hidden" id="name_picture" name="name_picture" value="'.$elem[2].'" />';
 		echo '<input type="submit" value="Delete image" />';
 		echo '</form>';
+		echo "</div>";
 	}
+	echo "</div>";
 ?>
 </body>
 </html>

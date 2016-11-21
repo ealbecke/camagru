@@ -25,7 +25,7 @@
 		$cnt->execute();
 		$cnt = $cnt->fetch();
 		$nbrPic = ($cnt[0]);
-		$perPage = 4;
+		$perPage = 8;
 		$nbPage = ceil($nbrPic/$perPage);
 		if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPage)
 			$cPage = intval($_GET['p']);
@@ -47,8 +47,7 @@
 						$ret = $result->fetchAll();
 						foreach ($ret as $element)
 						{
-							echo "<br />";
-							echo $element[0];
+							echo "<p class=\"comment\" >" . $element[0]. "</p>";
 						}
 					}
 					echo '<form action="add_comment.php" method="post">';
@@ -86,12 +85,14 @@
 				echo "</div>";
 			}
 		echo "</div>";
-for ($i=1; $i<=$nbPage;$i++) {
-	if ($i == $cPage)
-		echo $i . "/";
-	else
-		echo "<a href=\"galerie.php?p=".$i."\">$i</a> /";
-}
+		echo "<div id=\"pagination\">";
+			for ($i=1; $i<=$nbPage;$i++) {
+			if ($i == $cPage)
+				echo $i . " / ";
+			else
+				echo "<a href=\"galerie.php?p=".$i."\">$i</a> /";
+			}
+		echo "</div>";
 	?>
 </body>
 </html>
