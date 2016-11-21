@@ -1,14 +1,10 @@
 <?php
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=CAMAGRU', 'root', '');
-		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$bdd->exec("SET CHARACTER SET utf8");
-		return $bdd;
-	}
-	catch (PDOException $e)
-	{
-		echo 'Erreur : ' . $e->getMessage();
-		return false;
-	}
-?>
+include('config/database.php');
+include('config/setup.php');
+try {
+	$bdd = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'Error connection: ' . $e->getMessage();
+    return false;
+}

@@ -113,7 +113,7 @@ function disabledButton() {
 				image: canvas.toDataURL("image/png"),
 				over: pic_over
 			}
-			makeRequest("/camagru/test.php", Data);
+			makeRequest("test.php", Data);
 		}
 	}
 

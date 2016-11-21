@@ -88,7 +88,7 @@ if (isset($_SESSION['login'])){
 	<header>
 		<form action="check_connect.php" method="post">
 			<p>Login: <input type="text" name="login">
-			 Mot de passe: <input type="text" name="password">
+			 Mot de passe: <input type="password" name="password">
 			<input type="submit" name="ok" value="connexion"></p>
 		</form>
 		<a href="forget_pwd.php">Mot de passe oublie ?</a>
